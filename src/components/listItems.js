@@ -31,6 +31,7 @@ export default function NestedList(props) {
       component="nav"
       aria-labelledby="nested-list-subheader"
       className={classes.root}
+      disablePadding={true}
     >
       <ListItem button onClick={handleClick}>
         <ListItemText primary={props.area.name} />
