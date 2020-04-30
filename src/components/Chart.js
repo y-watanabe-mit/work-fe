@@ -9,23 +9,20 @@ function createData(time, amount) {
 }
 
 const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData('4/24', 3508),
+  createData('4/25', 3669),
+  createData('4/26', 3772),
+  createData('4/27', 3844),
+  createData('4/28', 3883),
+  createData('4/29', 3995),
 ];
 
-export default function Chart() {
+export default function Chart(props) {
   const theme = useTheme();
 
   return (
     <React.Fragment>
-      <Title>Today</Title>
+      <Title>Current Patients by {props.name}</Title>
       <ResponsiveContainer>
         <LineChart
           data={data}
@@ -38,13 +35,12 @@ export default function Chart() {
         >
           <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
           <YAxis stroke={theme.palette.text.secondary}>
-            <Label
+            {/* <Label
               angle={270}
               position="left"
               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
             >
-              Sales ($)
-            </Label>
+            </Label> */}
           </YAxis>
           <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
         </LineChart>
