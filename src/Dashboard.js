@@ -233,9 +233,8 @@ export default function Dashboard() {
           Area from Japan.
         </ListSubheader>
         {Object.keys(prefectures).map(key => (
-            <NestedList area={prefectures[key]} />
+            <NestedList area={prefectures[key]} key={key} />
         ))}
-        <NestedList area={prefectures["hokkaido"]} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

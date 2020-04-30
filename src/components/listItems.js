@@ -39,7 +39,7 @@ export default function NestedList(props) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {Object.keys(props.area.prefs).map(key => (
-            <ListItem button className={classes.nested}>
+            <ListItem button className={classes.nested} key={key}>
               <ListItemText primary={props.area.prefs[key]} />
             </ListItem>  
           ))}
