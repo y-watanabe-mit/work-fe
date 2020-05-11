@@ -26,6 +26,16 @@ export default function NestedList(props) {
     setOpen(!open);
   };
 
+  const handleClickPrefecture = (e) => {
+    // title
+    const pref = e.currentTarget.dataset.pref;
+    props.setTitle(props.setTitleFunc(pref));
+
+    // data
+    const code = e.currentTarget.dataset.code;
+    props.setDataFunc(code, props.setData);
+  };
+  
   return (
     <List
       component="nav"
@@ -40,8 +50,8 @@ export default function NestedList(props) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {Object.keys(props.area.prefs).map(key => (
-            <ListItem button className={classes.nested} key={key}>
-              <ListItemText primary={props.area.prefs[key]} />
+            <ListItem button className={classes.nested} key={key} onClick={handleClickPrefecture} data-pref={props.area.prefs[key].name} data-code={props.area.prefs[key].code} >
+              <ListItemText primary={props.area.prefs[key].name} />
             </ListItem>  
           ))}
         </List>

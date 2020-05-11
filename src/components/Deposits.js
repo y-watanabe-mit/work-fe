@@ -14,8 +14,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Deposits() {
+export default function Deposits(props) {
   const classes = useStyles();
+  var patients,exits,deaths;
+  if (props.data) {
+    patients = props.data.cpatientsJapan;
+    exits = props.data.cexitsJapan;
+    deaths = props.data.cdeathsJapan;
+  }
   return (
     <React.Fragment>
       <Title>Domestic Status</Title>
@@ -23,19 +29,19 @@ export default function Deposits() {
         Patients
       </Typography>
       <Typography component="p" variant="h5">
-        11,427
+        {patients}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         Exits
       </Typography>
       <Typography component="p" variant="h5">
-        1,991
+        {exits}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         Deaths
       </Typography>
       <Typography component="p" variant="h5">
-        277
+        {deaths}
       </Typography>
     </React.Fragment>
   );

@@ -8,35 +8,32 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
-// Generate Order Data
-function createData(id, name, npatients, nexits, ndeaths) {
-  return { id, name, npatients, nexits, ndeaths };
-}
-
-const rows = [
-  createData(0, 'Tokyo', 4073, 59, 19),
-  createData(1, 'Chiba', 801, 101, 23),
-  createData(2, 'Kanagawa', 975, 150, 29),
-];
-
-function preventDefault(event) {
-  event.preventDefault();
-}
-
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
   },
 }));
 
-export default function Orders() {
+export default function Orders(props) {
   const classes = useStyles();
+  var rows = [];
+  if (props.data) {
+    rows = props.data;
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.currentTarget.style.display = "none";
+    props.getFunc(true, props.setData);
+  }
+
   return (
     <React.Fragment>
       <Title>Descending Order</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
+            <TableCell>Rank</TableCell>
             <TableCell>Prefecture</TableCell>
             <TableCell>Patients</TableCell>
             <TableCell>Exits</TableCell>
@@ -46,6 +43,7 @@ export default function Orders() {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
+              <TableCell>{row.id + 1}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.npatients}</TableCell>
               <TableCell>{row.nexits}</TableCell>
@@ -55,7 +53,7 @@ export default function Orders() {
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
+        <Link color="primary" href="#" onClick={handleClick}>
           See more...
         </Link>
       </div>
